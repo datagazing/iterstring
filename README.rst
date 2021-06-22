@@ -48,7 +48,9 @@ A simple use case:
   <class 'list'>
 
 Using the class directly:
-  
+
+.. code-block:: python
+
   >>> from iterstring import Istr
   >>> asdf = Istr('''
   item one # with a comment
