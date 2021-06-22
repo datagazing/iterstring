@@ -1,4 +1,4 @@
-# simple class that allows writing lists and dicts as heredoc strings
+"""See top level package docstring for documentation"""
 
 import re
 
