@@ -6,18 +6,20 @@ import re
 
 # helper functions
 
+
 def numerify(x):
-    'Coerce string into float or int if possible'
+    """Coerce string into float or int if possible"""
     try:
         x = float(x)
         if x % 1 == 0:
             x = int(x)
-    except:
+    except ValueError:
         pass
     return(x)
 
+
 def Listr(x, lstrip=True, rstrip=True, comments=True, coerce=True):
-    'Convenience function for Istr(x).to_list()'
+    """Convenience function for Istr(x).to_list()"""
     return Istr(x).to_list(
         lstrip=lstrip,
         rstrip=rstrip,
@@ -25,8 +27,9 @@ def Listr(x, lstrip=True, rstrip=True, comments=True, coerce=True):
         coerce=False,
     )
 
+
 def Distr(x, lstrip=True, rstrip=True, comments=True, coerce=True):
-    'Convenience function for Istr(x).to_dict()'
+    """Convenience function for Istr(x).to_dict()"""
     return Istr(x).to_dict(
         lstrip=lstrip,
         rstrip=rstrip,
@@ -34,10 +37,12 @@ def Distr(x, lstrip=True, rstrip=True, comments=True, coerce=True):
         coerce=False,
     )
 
+
 ########################################################################
 
+
 class Istr(str):
-    '''
+    """
     String (str) subclass that adds to_list and to_dict convenience methods
 
     - By default, strip whitespace from left and right of each item
@@ -57,11 +62,11 @@ class Istr(str):
 
     A simple use case:
 
-    >>> some_list = Listr("""
+    >>> some_list = Listr('''
     item one # with a comment
       2
     three
-    """)
+    ''')
     >>> some_list
     ['item one', 2, 'three']
     >>> type(some_list)
@@ -70,11 +75,11 @@ class Istr(str):
     Using the class directly:
 
     >>> from iterstring import Istr
-    >>> asdf = Istr("""
+    >>> asdf = Istr('''
     item one # with a comment
       2
     three
-    """)
+    ''')
     >>> asdf.to_list()
     ['item one', 2, 'three']
     >>> type(asdf)
@@ -83,11 +88,11 @@ class Istr(str):
     >>> [x for x in asdf]
     ['item one', 2, 'three']
 
-    >>> fdsa = Istr("""
+    >>> fdsa = Istr('''
     item one # with a comment
       2 some other value
     key3 3.14159
-    """)
+    ''')
     >>> asdf.to_dict()
     {'item': 'one', 2: 'some other value', 'key3': 3.14159}
     >>> asdf.to_dict(coerce=False)
@@ -99,11 +104,10 @@ class Istr(str):
         Create line-based list representation of string
     to_dict(lstrip=True, rstrip=True, comments=True, coerce=True)
         Create line-based dictionary representation of string
-    '''
+    """
+
     def to_list(self, lstrip=True, rstrip=True, comments=True, coerce=True):
-        '''
-        Create a list using each line as an item
-        '''
+        """Create a list using each line as an item"""
         lines = self.split("\n")
         if comments:
             # strip out comments
@@ -122,9 +126,7 @@ class Istr(str):
         return lines
 
     def to_dict(self, lstrip=True, rstrip=True, comments=True, coerce=True):
-        '''
-        Create a dictionary using the first token of each line as key
-        '''
+        """Create a dictionary using the first token of each line as key"""
         lines = self.to_list(
             lstrip=lstrip,
             rstrip=rstrip,
@@ -151,4 +153,3 @@ class Istr(str):
 
     def __len__(self):
         return len(self.to_list())
-

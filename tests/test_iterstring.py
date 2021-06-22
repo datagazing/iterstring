@@ -5,7 +5,7 @@
 
 import unittest
 
-from iterstring import iterstring
+# import iterstring
 
 
 class TestIterstring(unittest.TestCase):

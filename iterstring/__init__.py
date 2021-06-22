@@ -33,7 +33,7 @@ A simple use case:
   <class 'list'>
 
 Using the class directly:
-  
+
   >>> from iterstring import Istr
   >>> asdf = Istr('''
   item one # with a comment
