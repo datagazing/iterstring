@@ -166,7 +166,6 @@ class Istr(str):
 
 class TokenList(str):
     """
-    
     """
     def to_list(self, delimiter=r'\s+', comments=True, coerce=True):
         lines = self.split("\n")
