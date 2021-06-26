@@ -153,3 +153,26 @@ class Istr(str):
 
     def __len__(self):
         return len(self.to_list())
+
+
+class TokenList(str).
+    def to_list(self, delimiter=r'\s+', comments=True, coerce=True):
+        lines = self.split("\n")
+        if comments:
+            # strip out comments
+            lines = [re.sub(r'#.*', '', x) for x in lines]
+        text = ' '.join(lines)
+        tokens = re.split(delimiter, text)
+        if coerce:
+            # convert values to numeric types where that makes sense
+            tokens = [numerify(x) for x in tokens]
+        return tokens
+
+    def __iter__(self):
+        return iter(self.to_list())
+
+    def __next__(self):
+        return self.to_list().__next__()
+
+    def __len__(self):
+        return len(self.to_list())
