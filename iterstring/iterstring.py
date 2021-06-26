@@ -18,23 +18,32 @@ def numerify(x):
     return(x)
 
 
-def Listr(x, lstrip=True, rstrip=True, comments=True, coerce=True):
+def listr(x, lstrip=True, rstrip=True, comments=True, coerce=True):
     """Convenience function for Istr(x).to_list()"""
     return Istr(x).to_list(
         lstrip=lstrip,
         rstrip=rstrip,
-        comments=True,
-        coerce=False,
+        comments=comments,
+        coerce=coerce,
     )
 
 
-def Distr(x, lstrip=True, rstrip=True, comments=True, coerce=True):
+def distr(x, lstrip=True, rstrip=True, comments=True, coerce=True):
     """Convenience function for Istr(x).to_dict()"""
     return Istr(x).to_dict(
         lstrip=lstrip,
         rstrip=rstrip,
-        comments=True,
-        coerce=False,
+        comments=comments,
+        coerce=coerce,
+    )
+
+
+def tlist(x, delimiter=r'\s+', comments=True, coerce=True):
+    """Convenience function for TokenStr(x).to_list()"""
+    return TokenList(x).to_list(
+        delimiter=delimiter,
+        comments=comments,
+        coerce=coerce,
     )
 
 
@@ -53,16 +62,16 @@ class Istr(str):
     - dict(Istr) does NOT work (dict makes assumptions about the iterable)
         - list(Istr) and list comprehensions work fine
     - to_list() and to_dict() reprocess the string every time
-        - So Listr and Distr may be more efficient and predictable
+        - So listr and sistr may be more efficient and predictable
 
     Examples
     --------
 
-    >>> from iterstring import Listr # or Distr
+    >>> from iterstring import listr # or distr
 
     A simple use case:
 
-    >>> some_list = Listr('''
+    >>> some_list = listr('''
     item one # with a comment
       2
     three
@@ -155,7 +164,10 @@ class Istr(str):
         return len(self.to_list())
 
 
-class TokenList(str).
+class TokenList(str):
+    """
+    
+    """
     def to_list(self, delimiter=r'\s+', comments=True, coerce=True):
         lines = self.split("\n")
         if comments:
