@@ -174,6 +174,8 @@ class TokenList(str):
             lines = [re.sub(r'#.*', '', x) for x in lines]
         text = ' '.join(lines)
         tokens = re.split(delimiter, text)
+        # drop empty strings
+        tokens = [x for x in tokens if not re.search(r'^\s*$', x)]
         if coerce:
             # convert values to numeric types where that makes sense
             tokens = [numerify(x) for x in tokens]
