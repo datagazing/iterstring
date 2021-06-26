@@ -73,6 +73,6 @@ Documentation
 
 __author__ = """Brendan Strejcek"""
 __email__ = 'brendan@datagazing.com'
-__version__ = '0.1.1'
+__version__ = '1.0.0'
 
 from .iterstring import Istr, Listr, Distr # noqa F401
