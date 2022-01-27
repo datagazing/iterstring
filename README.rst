@@ -27,7 +27,7 @@ Features
 * Coerce items to numbers where possible (see coerce)
 * Iterating over the object treats it like a list
 * Indexing the object treats it like a dictionary
-* Listr and Distr helper functions provide simple interfaces
+* listr and distr helper functions provide simple interfaces
 
 Examples
 --------
@@ -36,8 +36,8 @@ A simple use case:
 
 .. code-block:: python
 
-  >>> from iterstring import Listr # or Distr
-  >>> some_list = Listr('''
+  >>> from iterstring import listr # or distr
+  >>> some_list = listr('''
   item one # with a comment
     2
   three
